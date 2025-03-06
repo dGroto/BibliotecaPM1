@@ -8,8 +8,6 @@ public class Main {
         Biblioteca biblioteca = new Biblioteca();
         boolean continuar = true;
 
-        // POLYANA
-
         while (continuar) {
             System.out.println("\n\t1. Adicionar Livro"
            +  "\n\t2. Cadastrar Leitor"
