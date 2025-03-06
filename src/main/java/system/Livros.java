@@ -82,7 +82,11 @@ public class Livros {
 
     }
 
-
+    @Override
+    public String toString() {
+        return "\tTitulo: " + titulo + "\n\tAutor: " + autor + "\n\tGenero: " + genero
+        + "\n\tAno de Publicacao: " + anoPublicacao + "\n\tDisponivel: " + disponivel + "\n----------------------------";
+    }
 
 
 }
