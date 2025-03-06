@@ -1,35 +1,34 @@
-package system;
-import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
+package system; //Pacote criado
+import java.util.Scanner; //Classe Scanner importada para ler entradas do usuário
+import java.util.List; //Interface List importada para usar listas
+import java.util.ArrayList; //Classe importada para usar arrays dinâmicos
 
-public class Biblioteca {
+public class Biblioteca { //Classe Biblioteca (pública)
 
-    Scanner sc = new Scanner(System.in);
-    List<Livros> listaLivros = new ArrayList<>();
-    List<Leitor> listaLeitores = new ArrayList<>();
-    List<Emprestimo> livrosEmprestados = new ArrayList<>();
+    Scanner sc = new Scanner(System.in); //Lê entradas do usuário através do teclado
+    List<Livros> listaLivros = new ArrayList<>(); //Lista criada para armazenar objetos da classe Livros
+    List<Leitor> listaLeitores = new ArrayList<>(); //Lista criada para armazenar objetos da classe Leitor
+    List<Emprestimo> livrosEmprestados = new ArrayList<>(); //Lista criada para armazenar objetos da classe Emprestimo
 
-    //Adicionar livro à biblioteca
-    public void addLivro() {
-        Livros novoLivro = new Livros();
+    public void addLivro() { //Metodo para adicionar livros à biblioteca
+        Livros novoLivro = new Livros(); //Novo objeto
 
-        System.out.print("Nome: ");
-        novoLivro.setTitulo(sc.nextLine());
+        System.out.print("Nome: "); //Imprime no console
+        novoLivro.setTitulo(sc.nextLine()); //Armazena o nome do livro
 
-        System.out.print("Autor: ");
-        novoLivro.setAutor(sc.nextLine());
+        System.out.print("Autor: "); //Imprime no console
+        novoLivro.setAutor(sc.nextLine()); //Armazena o valor digitado pelo usuário no atributo
 
-        System.out.print("Gênero: ");
-        novoLivro.setGenero(sc.nextLine());
+        System.out.print("Gênero: "); //Imprime no console
+        novoLivro.setGenero(sc.nextLine()); //Lê o gênero do livro e armazena no atributo
 
-        System.out.print("Ano de publicação: ");
-        novoLivro.setAnoPublicacao(sc.nextLine());
+        System.out.print("Ano de publicação: "); //Imprime no console
+        novoLivro.setAnoPublicacao(sc.nextLine()); //Lê o ano de publicação e armazena no atributo
 
         novoLivro.setDisponivel(true); //O livro está disponível ao ser adicionado
 
-        listaLivros.add(novoLivro);
-        System.out.println("Livro adicionado com sucesso!");
+        listaLivros.add(novoLivro); //Adiciona o livro que o usuário preencheu na biblioteca
+        System.out.println("Livro adicionado com sucesso!"); //Imprime no console
     }
 
     // POLYANA
