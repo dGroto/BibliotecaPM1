@@ -5,16 +5,16 @@ public class Livros {
     private String titulo;
     private String autor;
     private String genero;
-    private String anoPublicacao;
-    private boolean disponivel;
+    protected String anoPublicacao;
+    protected Status status;
 
     //CONSTRUTOR
-    public Livros (String titulo, String autor, String genero, String anoPublicacao, boolean disponivel) {
+    public Livros (String titulo, String autor, String genero, String anoPublicacao, Status status) {
         this.titulo = titulo;
         this.autor = autor;
         this.genero = genero;
         this.anoPublicacao = anoPublicacao;
-        this.disponivel = disponivel;
+        this.status = status;
     }
 
     public Livros(){
@@ -56,12 +56,12 @@ public class Livros {
         this.anoPublicacao = anoPublicacao;
     }
 
-    //DISPONIVEL
-    public boolean getDisponivel(){
-        return disponivel;
+    //STATUS
+    public void setStatus(Status status){
+        this.status = status;
     }
-    public void setDisponivel(boolean disponivel){
-        this.disponivel = disponivel;
+    public Status getStatus(){
+        return status;
     }
 
     //  METODOS/FUNÇÕES
@@ -69,8 +69,7 @@ public class Livros {
         System.out.println("T\n\titulo: " + titulo
                             + "\n\tAutor: " + autor
                             + "\n\tGênero: " + genero
-                            + "\n\tAno de Publicação: " + anoPublicacao
-                            + "\n\tDisponivel : " + disponivel);
+                            + "\n\tAno de Publicação: " + anoPublicacao);
     }
 
 
@@ -84,7 +83,7 @@ public class Livros {
 
     public String toString() {
         return "\tTitulo: " + titulo + "\n\tAutor: " + autor + "\n\tGenero: " + genero
-        + "\n\tAno de Publicacao: " + anoPublicacao + "\n\tDisponivel: " + disponivel + "\n----------------------------";
+        + "\n\tAno de Publicacao: " + anoPublicacao + status + "\n----------------------------";
     }
 
 

@@ -3,7 +3,7 @@ import java.util.Scanner; //Classe Scanner importada para ler entradas do usuár
 import java.util.List; //Interface List importada para usar listas
 import java.util.ArrayList; //Classe importada para usar arrays dinâmicos
 
-public class Biblioteca { //Classe Biblioteca (pública)
+public class Biblioteca  implements IBiblioteca{ //Classe Biblioteca (pública)
 
     Scanner sc = new Scanner(System.in); //Lê entradas do usuário através do teclado
     List<Livros> listaLivros = new ArrayList<>(); //Lista criada para armazenar objetos da classe Livros
@@ -25,13 +25,12 @@ public class Biblioteca { //Classe Biblioteca (pública)
         System.out.print("Ano de publicação: "); //Imprime no console
         novoLivro.setAnoPublicacao(sc.nextLine()); //Lê o ano de publicação e armazena no atributo
 
-        novoLivro.setDisponivel(true); //O livro está disponível ao ser adicionado
+        novoLivro.setStatus(Status.DISPONIVEL); //O livro está disponível ao ser adicionado
 
         listaLivros.add(novoLivro); //Adiciona o livro que o usuário preencheu na biblioteca
         System.out.println("Livro adicionado com sucesso!"); //Imprime no console
     }
 
-    // POLYANA
 
     //Cadastrar leitor
     public void cadastrarLeitor() {
@@ -52,8 +51,6 @@ public class Biblioteca { //Classe Biblioteca (pública)
         for (Emprestimo emp : livrosEmprestados) {
             System.out.println("Livro: " + emp.getLivro().getTitulo());
             System.out.println("Leitor: " + emp.getLeitor().getNome());
-            System.out.println("Data do Empréstimo: " + emp.getDataEmprestimo());
-            System.out.println("Data de Devolução: " + emp.getDataDevolucao());
         }
     }
 
@@ -73,7 +70,7 @@ public class Biblioteca { //Classe Biblioteca (pública)
             }
         }
 
-        if (livroEmprestado == null || !livroEmprestado.getDisponivel()) {
+        if (livroEmprestado == null || Status.INDISPONIVEL.equals(livroEmprestado.getStatus()) ) {
             System.out.println("Livro não encontrado ou não disponível para empréstimo.");
             return;
         }
@@ -94,19 +91,23 @@ public class Biblioteca { //Classe Biblioteca (pública)
             return;
         }
 
-        System.out.print("Digite a data do empréstimo: ");
-        String dataEmprestimo = sc.nextLine();
-
-        System.out.print("Digite a data de devolução: ");
-        String dataDevolucao = sc.nextLine();
-
-        Emprestimo emprestimo = new Emprestimo(dataEmprestimo, leitor, livroEmprestado);
-        emprestimo.setDataDevolucao(dataDevolucao);
+        Emprestimo emprestimo = new Emprestimo(leitor, livroEmprestado);
         livrosEmprestados.add(emprestimo);
         leitor.solicitarEmprestimo(emprestimo);
         emprestimo.registrarEmprestimo();
+
+
     }
 
+    public void devolverEmprestimo() {
+
+        listarLivros();
+
+        System.out.print("Digite o título do livro que deseja devolver: ");
+        String tituloLivro = sc.nextLine();
+
+
+    }
 
     public void listarLeitores() {
 
