@@ -2,15 +2,11 @@ package system;
 import java.util.List;
 import java.util.ArrayList;
 
-// POLYANA
-
 public class Leitor {
 
   private String nome;
   private String cpf; // Adicionei um CPF para o cadastro
   private List<Emprestimo> emprestimos;
-
-
 
   //Construtor
   public Leitor(String nome, String cpf) {
@@ -64,4 +60,3 @@ public class Leitor {
     return "\tNome: " + nome + "\n\tCPF: " + cpf + "\n----------------------------";
   }
 }
-

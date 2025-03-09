@@ -67,9 +67,9 @@ public class Livros {
     //  METODOS/FUNÇÕES
     public void exibirInfos(){
         System.out.println("T\n\titulo: " + titulo
-                            + "\n\tAutor: " + autor
-                            + "\n\tGênero: " + genero
-                            + "\n\tAno de Publicação: " + anoPublicacao);
+                + "\n\tAutor: " + autor
+                + "\n\tGênero: " + genero
+                + "\n\tAno de Publicação: " + anoPublicacao);
     }
 
 
@@ -83,7 +83,7 @@ public class Livros {
 
     public String toString() {
         return "\tTitulo: " + titulo + "\n\tAutor: " + autor + "\n\tGenero: " + genero
-        + "\n\tAno de Publicacao: " + anoPublicacao + "\n\t" + status + "\n----------------------------";
+                + "\n\tAno de Publicacao: " + anoPublicacao + "\n\t" + status + "\n----------------------------";
     }
 
 
