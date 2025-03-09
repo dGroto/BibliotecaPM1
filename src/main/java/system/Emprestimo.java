@@ -4,11 +4,13 @@ public class Emprestimo extends Livros {
 
     private Leitor leitor;
     private Livros livro;
+    protected Status status;
 
     // CONSTRUTOR
-    public Emprestimo(Leitor leitor, Livros livro) {
+    public Emprestimo(Leitor leitor, Livros livro, Status status) {
         this.leitor = leitor;
         this.livro = livro;
+        this.status = status;
     }
 
     // METODOS
@@ -49,7 +51,13 @@ public class Emprestimo extends Livros {
         this.livro = livro;
     }
 
+    @Override
+    public Status getStatus() {
+        return status;
+    }
 
-
-
+    @Override
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 }

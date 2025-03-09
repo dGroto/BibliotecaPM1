@@ -83,7 +83,7 @@ public class Livros {
 
     public String toString() {
         return "\tTitulo: " + titulo + "\n\tAutor: " + autor + "\n\tGenero: " + genero
-        + "\n\tAno de Publicacao: " + anoPublicacao + status + "\n----------------------------";
+        + "\n\tAno de Publicacao: " + anoPublicacao + "\n\t" + status + "\n----------------------------";
     }
 
 
