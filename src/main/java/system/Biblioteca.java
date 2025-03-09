@@ -143,13 +143,17 @@ public class Biblioteca  extends Livros implements IBiblioteca{ //Classe Bibliot
     }
 
     public void devolverEmprestimo() {
-
         listarLivros();
-
         System.out.print("Digite o título do livro que deseja devolver: ");
         String tituloLivro = sc.nextLine();
 
-
+        for (Emprestimo emp : livrosEmprestados) {
+            if (emp.getLivro().getTitulo().equalsIgnoreCase(tituloLivro)) {
+                emp.registrarDevolucao();
+                livrosEmprestados.remove(emp);
+                break;
+            }
+        }
     }
 
     public void listarLeitores() {
