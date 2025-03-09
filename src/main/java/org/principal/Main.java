@@ -9,22 +9,21 @@ public class Main {
         boolean continuar = true;
         int opcao;
 
-        // POLYANA
 
         while (continuar) {
             System.out.println("\n\t1. Cadastros"
-           + "\n\t2. Registrar Empréstimo"
-           + "\n\t3. Listas"
-           + "\n\t4. Sair"
-           + "\n Escolha uma opção: ");
+                    + "\n\t2. Registrar Empréstimo"
+                    + "\n\t3. Listas"
+                    + "\n\t4. Sair"
+                    + "\n Escolha uma opção: ");
             int escolha = sc.nextInt();
             sc.nextLine(); //Consumir a linha em branco após o número
 
             switch (escolha) {
                 case 1:
                     System.out.println("\t1. Cadastrar Leitores"
-                                    + "\n\t2. Adicionar Livros"
-                         + "\n Escolha uma opção: ");
+                            + "\n\t2. Adicionar Livros"
+                            + "\n Escolha uma opção: ");
                     opcao = sc.nextInt();
                     sc.nextLine(); //Consumir a linha em branco após o número
                     if(opcao == 1) {
@@ -54,7 +53,7 @@ public class Main {
                     } else
                         System.out.println("\tOpcao invalida!");
                     break;
-                    case 4:
+                case 4:
                     continuar = false;
                     break;
                 default:

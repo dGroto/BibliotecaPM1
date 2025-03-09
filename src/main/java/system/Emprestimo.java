@@ -7,14 +7,12 @@ public class Emprestimo extends Livros {
     private Leitor leitor;
     private Livros livro;
     protected Status status;
-    private LocalDate dataEmprestimo; //Nova variável para ser a data de empréstimo
 
     // CONSTRUTOR
-    public Emprestimo(Leitor leitor, Livros livro, Status status, LocalDate dataEmprestimo) {
+    public Emprestimo(Leitor leitor, Livros livro, Status status ) {
         this.leitor = leitor;
         this.livro = livro;
         this.status = status;
-        this.dataEmprestimo = dataEmprestimo;
     }
 
     // METODOS
