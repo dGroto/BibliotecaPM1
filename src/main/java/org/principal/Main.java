@@ -9,7 +9,6 @@ public class Main {
         boolean continuar = true;
         int opcao;
 
-        // POLYANA
 
         while (continuar) {
             System.out.println("\n\t1. Cadastros"
