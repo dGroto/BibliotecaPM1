@@ -14,7 +14,7 @@ public class Main { //Código principal
             System.out.println("\n\t1. Cadastros"
                     + "\n\t2. Registrar Empréstimo"
                     + "\n\t3. Listas"
-                    + "\n\t4. Sair"
+                    + "\n\t4. Sair "
                     + "\n Escolha uma opção: "); //Imprime no console o menu de opções
             int escolha = sc.nextInt(); //Lê a opção escolhida pelo usuário
             sc.nextLine(); //Limpa a linha restante no buffer de entrada após o usuário utilizar
@@ -24,7 +24,7 @@ public class Main { //Código principal
                     System.out.println("\t1. Cadastrar Leitores"
                             + "\n\t2. Adicionar Livros"
                             + "\n Escolha uma opção: "); //Imprime no console
-                    opcao = sc.nextInt(); //Lê a opção escolhida pelo usuário
+                    opcao = sc.nextInt(); //Lê a opção escolhida pelo usuario
                     sc.nextLine(); //Limpa a linha restante no buffer de entrada após o usuário utilizar
                     if(opcao == 1) {
                         biblioteca.cadastrarLeitor(); //Chama o metodo para cadastrar leitores
