@@ -118,25 +118,30 @@ public class Biblioteca  extends Livros implements IBiblioteca{ //Classe Bibliot
 
             System.out.print("Digite o nome do leitor: "); //Imprime no console
             String nomeLeitor = sc.nextLine(); //Lê o nome do leitor
+            System.out.println("Digite o CPF do leitor: ");
+            String cpfLeitor = sc.nextLine();
 
             Leitor leitor = null;
+            Leitor cpf = null;
             for (Leitor l : listaLeitores) { //Verifica se o leitor está cadastrado
-                if (l.getNome().equalsIgnoreCase(nomeLeitor)) {
+                if (l.getNome().equalsIgnoreCase(nomeLeitor) && l.getCpf().equalsIgnoreCase(cpfLeitor)) {
                     leitor = l; //Encontra o leitor correspondente
+                    cpf = l;
                     break;
+
+                }
+
+                if (leitor == null ) { //Verifica se o leitor não foi encontrado
+                    System.out.println("Leitor não cadastrado ou incorreto."); //Imprime no console
+                    return; //Retorna sem fazer nada se o leitor não estiver cadastrado
+                } else {
+
+                    Emprestimo emprestimo = new Emprestimo(leitor, livroEmprestado, Status.INDISPONIVEL); //Cria um objeto Emprestimo e registra o empréstimo
+                    livrosEmprestados.add(emprestimo); //Adiciona o empréstimo na lista
+                    leitor.solicitarEmprestimo(emprestimo); //Registra o empréstimo no leitor
+                    emprestimo.registrarEmprestimo(); //Registra o empréstimo
                 }
             }
-
-            if (leitor == null) { //Verifica se o leitor não foi encontrado
-                System.out.println("Leitor não cadastrado."); //Imprime no console
-                return; //Retorna sem fazer nada se o leitor não estiver cadastrado
-            }
-
-            Emprestimo emprestimo = new Emprestimo(leitor, livroEmprestado, Status.INDISPONIVEL); //Cria um objeto Emprestimo e registra o empréstimo
-            livrosEmprestados.add(emprestimo); //Adiciona o empréstimo na lista
-            leitor.solicitarEmprestimo(emprestimo); //Registra o empréstimo no leitor
-            emprestimo.registrarEmprestimo(); //Registra o empréstimo
-
         }
     }
 
