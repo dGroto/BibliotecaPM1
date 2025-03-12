@@ -1,6 +1,8 @@
 package system; //Pacote criado
 
 public class Emprestimo extends Livros { //Classe Emprestimo herda da Classe Livros
+
+   //ATRIBUSTOS
     private Leitor leitor;
     private Livros livro;
     protected Status status;

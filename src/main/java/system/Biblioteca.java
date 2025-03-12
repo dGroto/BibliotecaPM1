@@ -81,9 +81,14 @@ public class Biblioteca  extends Livros implements IBiblioteca{ //Classe Bibliot
     }
 
     public void listarEmprestimos() { //Metodo para listar todos os empréstimos realizados
-        for(Emprestimo emp : livrosEmprestados) { //Percorre sobre a lista de empréstimos e mostra os detalhes de cada um
-            System.out.println("Livro: " + emp.getLivro().getTitulo()); //Título do livro
-            System.out.println("Leitor: " + emp.getLeitor().getNome()); //Nome do livro
+
+        if(livrosEmprestados.isEmpty()) {
+            System.out.println("\tNão há livros emprestados para devolver!");
+        }else {
+            for (Emprestimo emp : livrosEmprestados) { //Percorre sobre a lista de empréstimos e mostra os detalhes de cada um
+                System.out.println("Livro: " + emp.getLivro().getTitulo()); //Título do livro
+                System.out.println("Leitor: " + emp.getLeitor().getNome()); //Nome do livro
+            }
         }
     }
 
@@ -130,15 +135,28 @@ public class Biblioteca  extends Livros implements IBiblioteca{ //Classe Bibliot
     }
 
     public void devolverEmprestimo() { //Metodo para devolver um livro emprestado
-        listarLivros(); //Mostra a lista de livros disponíveis para a devolução
-        System.out.print("Digite o título do livro que deseja devolver: "); //Imprime no console
-        String tituloLivro = sc.nextLine(); //Lê o título do livro
 
-        for(Emprestimo emp : livrosEmprestados) { //Encontra o empréstimo correspondente e registra a devolução
-            if(emp.getLivro().getTitulo().equalsIgnoreCase(tituloLivro)) {
-                emp.registrarDevolucao(); //Registra a devolução do livro
-                livrosEmprestados.remove(emp); //Remove o empréstimo da lista
-                break;
+        if(livrosEmprestados.isEmpty()) {
+            System.out.println("\tNão há livros emprestados para devolver!");
+        }else {
+            //Mostra a lista de livros disponíveis para a devolução
+            for (Emprestimo emprestimo : livrosEmprestados) {
+                Livros livro = emprestimo.getLivro(); // Obtém o livro dentro do empréstimo
+                System.out.println("\tTitulo: " + livro.getTitulo()
+                        + "\n\tAutor: " + livro.getAutor()
+                        + "\n\tGerenero: " + livro.getGenero()
+                        + "\n\tAno de publicação: " + livro.getAnoPublicacao()
+                        + "\n\t" + livro.getStatus());
+            }
+            System.out.print("Digite o título do livro que deseja devolver: "); //Imprime no console
+            String tituloLivro = sc.nextLine(); //Lê o título do livro
+
+            for (Emprestimo emp : livrosEmprestados) { //Encontra o empréstimo correspondente e registra a devolução
+                if (emp.getLivro().getTitulo().equalsIgnoreCase(tituloLivro)) {
+                    emp.registrarDevolucao(); //Registra a devolução do livro
+                    livrosEmprestados.remove(emp); //Remove o empréstimo da lista
+                    break;
+                }
             }
         }
     }

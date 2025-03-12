@@ -56,6 +56,7 @@ public class Leitor { //Classe leitor com atributos privados
     emprestimos.add(emprestimo); //Adiciona um empréstimo na lista de empréstimos do leitor
   }
 
+
   //Metodo toString para retornar como uma string
   @Override
   public String toString() {

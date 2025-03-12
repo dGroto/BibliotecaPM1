@@ -12,7 +12,7 @@ public class Main { //Código principal
 
         while (continuar) { //Loop principal que continua até o usuário escolher a opção de sair
             System.out.println("\n\t1. Cadastros"
-                    + "\n\t2. Registrar Empréstimo"
+                    + "\n\t2. Empréstimo/Devolução"
                     + "\n\t3. Listas"
                     + "\n\t4. Sair "
                     + "\n Escolha uma opção: "); //Imprime no console o menu de opções
@@ -35,14 +35,25 @@ public class Main { //Código principal
                         System.out.println("\tOpcao invalida!"); //Imprime no console
                     break;
                 case 2:
-                    biblioteca.registrarEmprestimo(); //Chama o metodo que registra os empréstimos de um livro
+                    System.out.println("\t1. Registrar Emprestimo"
+                    + "\n\t2. Devolver Emprestimo"
+                            + "\n Escolha uma opção: ");
+                    opcao = sc.nextInt();
+                    sc.nextLine();
+                    if(opcao == 1) {
+                        biblioteca.registrarEmprestimo(); //Chama o metodo que registra os empréstimos de um livro
+                    } else if (opcao == 2) {
+                        biblioteca.devolverEmprestimo();
+                    }else{
+                        System.out.println("Opcao invalida!");
+                    }
                     break;
                 case 3:
                     System.out.println("\t1. Listar Leitores"
                             +  "\n\t2. Listar Livro"
                             + "\n\t3. Listar Emprestimos"
-                            + "\n Escolha uma opção: "); //Imprime no console
-                    opcao = sc.nextInt(); //Lê a opção escolhida pelo usuário
+                            + "\n Escolha uma opção: "); //Imprime no consol
+                    opcao = sc.nextInt(); //Lê a opção escolhida pelo usuario// e
                     sc.nextLine(); //Limpa a linha restante no buffer de entrada após o usuário utilizar
                     if(opcao == 1) {
                         biblioteca.listarLeitores(); //Chama o metodo para listar os leitores cadastrados
