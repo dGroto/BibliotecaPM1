@@ -68,7 +68,7 @@ public class Biblioteca  extends Livros implements IBiblioteca{ //Classe Bibliot
             }else{ //Verifica se já existe um leitor com o mesmo CPF na lista
                 for(Leitor leitor : listaLeitores) { //Percorre a lista de leitores
                     if(leitor.getCpf().replaceAll("[^0-9]", "").equals(cpfNumerico)) { //Se já existir um leitor com o mesmo CPF, mostra na tela e sai do metodo
-                        System.out.println("\tJá existe um leitor com este nome e CPF!"); //Imprime no console
+                        System.out.println("\tJá existe um leitor com esse CPF!"); //Imprime no console
                         return; //Sai do metodo sem adicionar o novo leitor
                     }
                 }
@@ -83,7 +83,7 @@ public class Biblioteca  extends Livros implements IBiblioteca{ //Classe Bibliot
     public void listarEmprestimos() { //Metodo para listar todos os empréstimos realizados
 
         if(livrosEmprestados.isEmpty()) {
-            System.out.println("\tNão há livros emprestados para devolver!");
+            System.out.println("\n=================================" +"\n  Não há livros emprestados para devolver!" + "\n=================================" );
         }else {
             for (Emprestimo emp : livrosEmprestados) { //Percorre sobre a lista de empréstimos e mostra os detalhes de cada um
                 System.out.println("Livro: " + emp.getLivro().getTitulo()); //Título do livro
@@ -93,45 +93,51 @@ public class Biblioteca  extends Livros implements IBiblioteca{ //Classe Bibliot
     }
 
     public void registrarEmprestimo() { //Metodo para registrar um empréstimo
-        listarLivros(); //Mostra a lista de livros disponíveis
 
-        System.out.print("Digite o título do livro: "); //imprime no console
-        String tituloLivro = sc.nextLine(); //Lê o título do livro
 
-        Livros livroEmprestado = null;
-        for(Livros livro : listaLivros) {
-            if(livro.getTitulo().equalsIgnoreCase(tituloLivro)) { //Verifica se o livro está na lista de livros e se está disponível
-                livroEmprestado = livro; //Encontra o livro correspondente
-                break;
+        if (listaLivros.isEmpty()) {
+            System.out.println("\n=================================" + "\n\tNão há livros cadastrados!" + "\n=================================" );
+        } else {
+            listarLivros(); //Mostra a lista de livros disponíveis
+
+            System.out.print("Digite o título do livro: "); //imprime no console
+            String tituloLivro = sc.nextLine(); //Lê o título do livro
+
+            Livros livroEmprestado = null;
+            for (Livros livro : listaLivros) {
+                if (livro.getTitulo().equalsIgnoreCase(tituloLivro)) { //Verifica se o livro está na lista de livros e se está disponível
+                    livroEmprestado = livro; //Encontra o livro correspondente
+                    break;
+                }
             }
-        }
 
-        if(livroEmprestado == null || Status.INDISPONIVEL.equals(livroEmprestado.getStatus()) ) { //verifica se o livro não foi encontrado ou não está disponível
-            System.out.println("Livro não encontrado ou não disponível para empréstimo."); //Imprime no console
-            return; //Retorna sem fazer nada se o livro não estiver disponível
-        }
-
-        System.out.print("Digite o nome do leitor: "); //Imprime no console
-        String nomeLeitor = sc.nextLine(); //Lê o nome do leitor
-
-        Leitor leitor = null;
-        for(Leitor l : listaLeitores) { //Verifica se o leitor está cadastrado
-            if(l.getNome().equalsIgnoreCase(nomeLeitor)) {
-                leitor = l; //Encontra o leitor correspondente
-                break;
+            if (livroEmprestado == null || Status.INDISPONIVEL.equals(livroEmprestado.getStatus())) { //verifica se o livro não foi encontrado ou não está disponível
+                System.out.println("\n=================================" + "Livro não encontrado ou não disponível para empréstimo." + "\n================================="); //Imprime no console
+                return; //Retorna sem fazer nada se o livro não estiver disponível
             }
+
+            System.out.print("Digite o nome do leitor: "); //Imprime no console
+            String nomeLeitor = sc.nextLine(); //Lê o nome do leitor
+
+            Leitor leitor = null;
+            for (Leitor l : listaLeitores) { //Verifica se o leitor está cadastrado
+                if (l.getNome().equalsIgnoreCase(nomeLeitor)) {
+                    leitor = l; //Encontra o leitor correspondente
+                    break;
+                }
+            }
+
+            if (leitor == null) { //Verifica se o leitor não foi encontrado
+                System.out.println("Leitor não cadastrado."); //Imprime no console
+                return; //Retorna sem fazer nada se o leitor não estiver cadastrado
+            }
+
+            Emprestimo emprestimo = new Emprestimo(leitor, livroEmprestado, Status.INDISPONIVEL); //Cria um objeto Emprestimo e registra o empréstimo
+            livrosEmprestados.add(emprestimo); //Adiciona o empréstimo na lista
+            leitor.solicitarEmprestimo(emprestimo); //Registra o empréstimo no leitor
+            emprestimo.registrarEmprestimo(); //Registra o empréstimo
+
         }
-
-        if(leitor == null) { //Verifica se o leitor não foi encontrado
-            System.out.println("Leitor não cadastrado."); //Imprime no console
-            return; //Retorna sem fazer nada se o leitor não estiver cadastrado
-        }
-
-        Emprestimo emprestimo = new Emprestimo(leitor, livroEmprestado, Status.INDISPONIVEL); //Cria um objeto Emprestimo e registra o empréstimo
-        livrosEmprestados.add(emprestimo); //Adiciona o empréstimo na lista
-        leitor.solicitarEmprestimo(emprestimo); //Registra o empréstimo no leitor
-        emprestimo.registrarEmprestimo(); //Registra o empréstimo
-
     }
 
     public void devolverEmprestimo() { //Metodo para devolver um livro emprestado
